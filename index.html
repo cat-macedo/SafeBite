@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SafeBite – Delivery vegano e seguro</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --green-light: #8ad15c;
+      --green-main: #43a047;
+      --green-dark: #2e7d32;
+      --text-main: #23302a;
+      --text-soft: #56635c;
+      --bg-light: #f7faf7;
+      --white: #ffffff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text-main);
+      background: var(--bg-light);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    h1, h2, h3 {
+      font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    /* ANIMAÇÕES */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+      100% { transform: translateY(0px); }
+    }
+
+    @keyframes softGlow {
+      0% { box-shadow: 0 0 0 rgba(67,160,71,0.0); }
+      50% { box-shadow: 0 0 18px rgba(67,160,71,0.25); }
+      100% { box-shadow: 0 0 0 rgba(67,160,71,0.0); }
+    }
+
+    /* HERO COM GRADIENTE ANTIGO */
+    .hero {
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px 60px;
+      background: radial-gradient(circle at top left, var(--green-light), var(--green-dark));
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      right: -60px;
+      top: -60px;
+      filter: blur(4px);
+      animation: softGlow 8s ease-in-out infinite;
+    }
+
+    .hero-inner {
+      max-width: 1120px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Bloco combinando logo + texto lado a lado */
+    .hero-content {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      max-width: 760px;
+    }
+
+    /* Logo à esquerda do texto */
+   .hero-logo-inline {
+  width: 300px;
+  height: auto;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 3;
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Balão atrás do logo */
+.hero-logo-inline::before {
+  content: "";
+  position: absolute;
+  inset: -12px -14px -12px -14px; /* tamanho do balão */
+  background: rgba(255, 255, 255, 0.20);  /* mesmo estilo do badge do hero */
+  border-radius: 18px;
+  z-index: -1;
+  backdrop-filter: blur(4px);
+}
+
+	.hero-logo-inline {
+  	filter: drop-shadow(0px 6px 12px rgba(0, 0, 0, 0.35));
+}
+    /* Bloco de texto à direita do logo */
+    .hero-text-block {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Frase de topo */
+    .hero-badge {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+      font-size: 0.85rem;
+      margin-bottom: 8px;
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 4vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      margin-bottom: 8px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      max-width: 480px;
+      margin-bottom: 10px;
+    }
+
+    .hero-phrase {
+      font-size: 0.95rem;
+      font-style: italic;
+      opacity: 0.95;
+      margin-bottom: 20px;
+    }
+
+    .hero-buttons .btn-primary,
+    .hero-buttons .btn-outline {
+      margin-right: 10px;
+    }
+
+    .btn-primary,
+    .btn-outline,
+    .btn-secondary {
+      display: inline-block;
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
+      margin-bottom: 10px;
+    }
+
+    .btn-primary {
+      background: var(--white);
+      color: var(--green-dark);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .btn-secondary {
+      background: var(--green-main);
+      color: var(--white);
+      box-shadow: 0 5px 14px rgba(0, 0, 0, 0.18);
+      text-align: center;
+    }
+
+    .btn-secondary:hover {
+      background: var(--green-dark);
+      transform: translateY(-1px);
+    }
+
+    /* SEÇÕES */
+    section { padding: 60px 20px; }
+
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: 1.9rem;
+      margin-bottom: 6px;
+      color: var(--green-dark);
+    }
+
+    .section-subtitle {
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+      color: var(--text-soft);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      align-items: start;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 18px 20px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+    }
+
+    .card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+      color: var(--green-main);
+    }
+
+    ul.clean-list {
+      list-style: none;
+      margin-top: 8px;
+      font-size: 0.95rem;
+    }
+
+    ul.clean-list li { margin-bottom: 6px; }
+
+    ul.clean-list li::before {
+      content: "•";
+      color: var(--green-main);
+      margin-right: 6px;
+    }
+
+    /* IMAGENS PROPOSTA DE VALOR */
+    .image-strip {
+      display: flex;
+      gap: 12px;
+      margin: 20px 0 10px;
+      flex-wrap: wrap;
+    }
+
+    .image-strip img {
+      width: 100%;
+      max-width: 200px;  /* ajustado para caber 5 imagens */
+      border-radius: 16px;
+      object-fit: cover;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    .mockup-card {
+      background: linear-gradient(135deg, #e8f6eb, #ffffff);
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      text-align: center;
+    }
+
+    .mockup-caption {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      margin-top: 8px;
+    }
+
+    .gif-banner {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .gif-banner img {
+      max-width: 100%;
+      border-radius: 18px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    }
+
+    /* CARROSSEL (tela de celular) */
+    .carousel-main {
+      position: relative;
+      max-width: 280px;   /* largura de celular, altura mantém proporção */
+      margin: 0 auto;
+    }
+
+    .carousel-main-img {
+      width: 100%;
+      border-radius: 22px;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.18);
+      background: #000;
+      display: block;
+    }
+
+    .carousel-peek {
+      position: absolute;
+      width: 80px;
+      border-radius: 14px;
+      right: 6px;
+      bottom: 6px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      border: 2px solid var(--white);
+    }
+
+    .carousel-main:hover .carousel-peek {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255,255,255,0.9);
+      color: var(--green-dark);
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+
+    .carousel-arrow:hover {
+      transform: translateY(-50%) scale(1.05);
+      background: var(--white);
+    }
+
+    .carousel-arrow.prev { left: -8px; }
+    .carousel-arrow.next { right: -8px; }
+
+    /* VÍDEOS */
+    .video-wrapper {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 18px;
+    }
+
+    .video-card h3 {
+      margin-bottom: 6px;
+      font-size: 1.02rem;
+      color: var(--green-main);
+    }
+
+    .video-card iframe {
+      width: 100%;
+      min-height: 210px;
+      border-radius: 14px;
+      border: none;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+      background: #000;
+    }
+
+    /* TIMELINE */
+    .timeline {
+      border-left: 3px solid var(--green-main);
+      padding-left: 16px;
+      margin-top: 10px;
+    }
+
+    .timeline-item {
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+    }
+
+    .timeline-item strong { color: var(--green-main); }
+
+    /* MATERIAIS */
+    .resource-wrapper {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin-top: 18px;
+    }
+
+    .resource-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 18px 20px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      justify-content: space-between;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .resource-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+    }
+
+    .resource-card h3 {
+      font-size: 1.02rem;
+      color: var(--green-main);
+    }
+
+    .resource-card p {
+      font-size: 0.94rem;
+      color: var(--text-soft);
+    }
+
+    /* EQUIPE */
+    .team-column {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .team-card {
+      background: var(--white);
+      padding: 18px 20px;
+      border-radius: 14px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .team-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+    }
+
+    .team-card h3 {
+      color: var(--green-main);
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .team-card h3 strong { font-weight: 700; }
+
+    .team-desc {
+      font-size: 0.92rem;
+      color: var(--text-soft);
+    }
+
+    .credits-list {
+      list-style: none;
+      margin-top: 8px;
+      font-size: 0.95rem;
+    }
+
+    .credits-list li { margin-bottom: 4px; }
+
+    footer {
+      background: #111;
+      color: #dfe4df;
+      text-align: center;
+      padding: 18px 10px;
+      font-size: 0.85rem;
+      margin-top: 40px;
+    }
+
+    /* RESPONSIVO */
+    @media (max-width: 780px) {
+      .hero {
+        text-align: center;
+      }
+
+      .hero-inner {
+        padding: 30px 0;
+      }
+
+      .hero-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .hero-text-block {
+        align-items: center;
+      }
+
+      .hero-logo-inline {
+        width: 80px;
+      }
+
+      .image-strip {
+        justify-content: center;
+      }
+      .carousel-arrow.prev { left: 2px; }
+      .carousel-arrow.next { right: 2px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="hero-content">
+
+        <!-- Logo à esquerda -->
+        <img src="assets/logo/safebite-logo.png"
+             alt="Logo SafeBite"
+             class="hero-logo-inline" />
+
+        <!-- Texto à direita -->
+        <div class="hero-text-block">
+          <div class="hero-badge">
+            Delivery 100% seguro para restrições alimentares
+          </div>
+
+          <h1 class="hero-title">SafeBite</h1>
+
+          <p class="hero-subtitle">
+            Delivery vegano e seguro para pessoas com restrições alimentares.
+            Confiança em cada pedido, cuidado em cada ingrediente.
+          </p>
+
+          <p class="hero-phrase">
+            “Comer bem começa com confiança.”
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#videos" class="btn-primary">Assistir ao pitch</a>
+            <a href="#sobre" class="btn-outline">Entenda o projeto</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- SOBRE -->
+  <section id="sobre">
+    <div class="container grid-2">
+      <div>
+        <h2 class="section-title">Problema & Demanda</h2>
+        <p>
+          Pessoas veganas e com restrições alimentares enfrentam dificuldade
+          para encontrar refeições seguras em apps de delivery tradicionais:
+          falta transparência sobre ingredientes, risco de contaminação
+          cruzada e poucas opções realmente confiáveis.
+        </p>
+        <p>
+          Para muitos usuários, um pedido errado não é apenas um incômodo:
+          é um risco direto à saúde.
+        </p>
+      </div>
+      <div>
+        <h2 class="section-title">Nossa Solução</h2>
+        <p>
+          O <strong>SafeBite</strong> é um aplicativo de delivery especializado
+          que conecta usuários a restaurantes verificados, com cardápios
+          100% veganos e filtros inteligentes para alergias e intolerâncias.
+        </p>
+        <p>
+          O foco é permitir que o usuário peça comida com tranquilidade,
+          sabendo exatamente o que está no prato.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROPOSTA DE VALOR + IMAGENS -->
+  <section id="valor">
+    <div class="container">
+      <h2 class="section-title">Proposta de Valor</h2>
+      <p class="section-subtitle">
+        Mais que um delivery: uma experiência segura, personalizada e alinhada
+        a escolhas conscientes.
+      </p>
+
+      <!-- Imagens na ordem solicitada -->
+      <div class="image-strip">
+        <img src="assets/fotos/pedido-app.jpg" alt="Pedindo no App">
+        <img src="assets/fotos/cozinha-segura.jpg" alt="Cozinha com preparo seguro">
+        <img src="assets/fotos/entrega-delivery.jpg" alt="Entrega segura do pedido">
+        <img src="assets/fotos/prato-vegano.jpg" alt="Prato vegano colorido 1">
+        <img src="assets/fotos/kit-safebite.jpg" alt="Kit identidade visual">
+      </div>
+
+      <!-- 6 elementos da proposta de valor -->
+      <div class="grid-2">
+        <div class="card">
+          <h3>Segurança alimentar verificada</h3>
+          <ul class="clean-list">
+            <li>Curadoria de restaurantes com critérios rígidos de segurança.</li>
+            <li>Selo “Ambiente Seguro” para alergias e intolerâncias.</li>
+            <li>Redução do risco de contaminação cruzada.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Personalização inteligente</h3>
+          <ul class="clean-list">
+            <li>Filtros por alergênicos (glúten, lactose, oleaginosas etc.).</li>
+            <li>Preferências de estilo de vida e saúde.</li>
+            <li>Recomendações baseadas no histórico do usuário.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Transparência total</h3>
+          <ul class="clean-list">
+            <li>Lista de ingredientes detalhada em cada prato.</li>
+            <li>Alertas claros sobre possíveis traços de alergênicos.</li>
+            <li>Canal de contato com o restaurante para dúvidas específicas.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Comunidade de confiança</h3>
+          <ul class="clean-list">
+            <li>Avaliações focadas em segurança e confiabilidade.</li>
+            <li>Relatos de pessoas com restrições semelhantes às suas.</li>
+            <li>Construção de uma base de boas experiências.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Experiência simples e rápida</h3>
+          <ul class="clean-list">
+            <li>Cadastro rápido do perfil alimentar.</li>
+            <li>Filtros salvos para próximos pedidos.</li>
+            <li>Resumo final do pedido com checagem de segurança.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Impacto e propósito</h3>
+          <ul class="clean-list">
+            <li>Promoção da alimentação vegana e sustentável.</li>
+            <li>Apoio a pequenos restaurantes especializados.</li>
+            <li>Contribuição para saúde, ética e meio ambiente.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="gif-banner">
+        <img src="assets/hero/banner-hero.gif" alt="Banner ou GIF SafeBite">
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPONENTES -->
+  <section id="componentes">
+    <div class="container">
+      <h2 class="section-title">Componentes do Projeto SafeBite</h2>
+      <p class="section-subtitle">
+        Os principais blocos que estruturam o modelo de negócio e o desenvolvimento do MVP.
+      </p>
+
+      <div class="grid-4">
+        <div class="card">
+          <h3>1. Problema</h3>
+          <p>Insegurança alimentar em apps de delivery para veganos e pessoas com restrições.</p>
+        </div>
+        <div class="card">
+          <h3>2. Público-alvo</h3>
+          <p>Pessoas veganas, vegetarianas, alérgicas, intolerantes ou com dietas médicas.</p>
+        </div>
+        <div class="card">
+          <h3>3. Solução</h3>
+          <p>Plataforma de delivery especializada, com restaurantes verificados e filtros avançados.</p>
+        </div>
+        <div class="card">
+          <h3>4. Proposta de valor</h3>
+          <p>Permitir que o usuário peça comida com segurança e tranquilidade.</p>
+        </div>
+        <div class="card">
+          <h3>5. MVP</h3>
+          <p>Cadastro de perfil, listagem de parceiros, filtros e resumo de ingredientes.</p>
+        </div>
+        <div class="card">
+          <h3>6. Mercado</h3>
+          <p>Interseção entre o crescimento do delivery, do veganismo e das restrições alimentares.</p>
+        </div>
+        <div class="card">
+          <h3>7. Modelo de negócios</h3>
+          <p>Comissão por pedido, planos premium e parcerias com restaurantes.</p>
+        </div>
+        <div class="card">
+          <h3>8. Visão de futuro</h3>
+          <p>Ser referência em alimentação segura e consciente, com serviços complementares.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VÍDEOS -->
+  <section id="videos">
+    <div class="container">
+      <h2 class="section-title">Vídeos do Projeto</h2>
+      <p class="section-subtitle">
+        Assista ao pitch final e à demonstração do MVP em funcionamento.
+      </p>
+
+      <div class="video-wrapper">
+        <div class="video-card">
+          <h3>Pitch Final – SafeBite (até 3 min)</h3>
+          <iframe
+            src="https://www.youtube.com/embed/SEU_VIDEO_PITCH"
+            title="Pitch SafeBite"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <div class="video-card">
+          <h3>Demonstração do MVP – SafeBite (até 5 min)</h3>
+          <iframe
+            src="https://www.youtube.com/embed/SEU_VIDEO_MVP"
+            title="MVP SafeBite"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MVP & CARROSSEL -->
+  <section id="mvp">
+    <div class="container grid-2">
+      <div>
+        <h2 class="section-title">Como funciona o MVP</h2>
+        <p>
+          O MVP do SafeBite permite que o usuário cadastre suas restrições,
+          explore restaurantes verificados, visualize cardápios com alertas
+          de alergênicos e finalize o pedido com segurança.
+        </p>
+        <ul class="clean-list">
+          <li>Cadastro de perfil alimentar e restrições.</li>
+          <li>Lista de restaurantes parceiros seguros.</li>
+          <li>Filtros por tipo de prato, alergias e faixa de preço.</li>
+          <li>Resumo claro de ingredientes antes de confirmar o pedido.</li>
+        </ul>
+      </div>
+
+      <div class="mockup-card">
+        <div class="carousel-main">
+          <img id="carousel-main-img"
+               class="carousel-main-img"
+               src="assets/mockups/tela1.png"
+               alt="Tela do app SafeBite" />
+
+          <img id="carousel-peek-img"
+               class="carousel-peek"
+               src="assets/mockups/tela2.png"
+               alt="Próxima tela do app" />
+
+          <button class="carousel-arrow prev" type="button" aria-label="Tela anterior">‹</button>
+          <button class="carousel-arrow next" type="button" aria-label="Próxima tela">›</button>
+        </div>
+        <p class="mockup-caption">
+          Visual do app SafeBite em diferentes etapas do fluxo. Passe o mouse para ter um vislumbre da próxima tela.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CRONOGRAMA -->
+  <section id="cronograma">
+    <div class="container">
+      <h2 class="section-title">Plano de atividades – 1 ano</h2>
+      <p class="section-subtitle">
+        Visão geral do desenvolvimento do SafeBite, da ideia ao lançamento.
+      </p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <strong>Meses 1–3:</strong> pesquisa de mercado, definição do
+          problema, público-alvo e proposta de valor.
+        </div>
+        <div class="timeline-item">
+          <strong>Meses 4–6:</strong> design de interface, desenvolvimento do
+          MVP e parcerias com restaurantes-piloto.
+        </div>
+        <div class="timeline-item">
+          <strong>Meses 7–9:</strong> testes com usuários, coleta de feedback,
+          ajustes e validação do modelo de negócio.
+        </div>
+        <div class="timeline-item">
+          <strong>Meses 10–12:</strong> lançamento regional, monitoramento de
+          métricas e planejamento de expansão.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MATERIAIS -->
+  <section id="materiais">
+    <div class="container">
+      <h2 class="section-title">Materiais do Projeto</h2>
+      <p class="section-subtitle">
+        Acesse a apresentação e o documento oficial que embasam o SafeBite.
+      </p>
+
+      <div class="resource-wrapper">
+        <div class="resource-card">
+          <h3>Apresentação de Slides</h3>
+          <p>Versão utilizada no pitch final com síntese completa do projeto.</p>
+          <a href="LINK_PARA_SLIDES" target="_blank" rel="noopener" class="btn-secondary">
+            Abrir Slides
+          </a>
+        </div>
+
+        <div class="resource-card">
+          <h3>Projeto PIPE</h3>
+          <p>Documento completo com análise de mercado, validação, proposta e modelo.</p>
+          <a href="LINK_PARA_PIPE" target="_blank" rel="noopener" class="btn-secondary">
+            Abrir PIPE
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EQUIPE -->
+  <section id="equipe">
+    <div class="container">
+      <h2 class="section-title">Equipe SafeBite</h2>
+      <p class="section-subtitle">
+        Seis membros contribuíram para diferentes áreas: produto, design, tecnologia,
+        validação e comunicação.
+      </p>
+
+      <div class="team-column">
+        <div class="team-card">
+          <h3><strong>Nome 1</strong> — Coordenação geral & visão do produto</h3>
+          <p class="team-desc">
+            Texto breve sobre a pessoa e a contribuição específica no projeto. (Preencher depois)
+          </p>
+        </div>
+
+        <div class="team-card">
+          <h3><strong>Nome 2</strong> — Pesquisa de mercado & validação</h3>
+          <p class="team-desc">
+            Texto breve sobre a pessoa e suas responsabilidades no processo. (Preencher depois)
+          </p>
+        </div>
+
+        <div class="team-card">
+          <h3><strong>Nome 3</strong> — UX/UI Design & identidade visual</h3>
+          <p class="team-desc">
+            Texto breve sobre a atuação no design, protótipo e experiência do usuário. (Preencher depois)
+          </p>
+        </div>
+
+        <div class="team-card">
+          <h3><strong>Nome 4</strong> — Desenvolvimento do MVP</h3>
+          <p class="team-desc">
+            Texto curto descrevendo o desenvolvimento técnico, estrutura do MVP ou protótipo. (Preencher depois)
+          </p>
+        </div>
+
+        <div class="team-card">
+          <h3><strong>Nome 5</strong> — Modelo de negócios & métricas</h3>
+          <p class="team-desc">
+            Breve descrição da contribuição na análise financeira, métricas e viabilidade. (Preencher depois)
+          </p>
+        </div>
+
+        <div class="team-card">
+          <h3><strong>Nome 6</strong> — Pitch, comunicação & apresentação</h3>
+          <p class="team-desc">
+            Pequena biografia sobre a criação do pitch, narração e comunicação final do projeto. (Preencher depois)
+          </p>
+        </div>
+      </div>
+
+      <div style="margin-top: 32px;">
+        <h2 class="section-title">Créditos Acadêmicos</h2>
+        <p class="section-subtitle">
+          Projeto desenvolvido como parte da disciplina de Empreendedorismo, sob orientação do Prof. Luciano Araújo.
+        </p>
+        <ul class="credits-list">
+          <li>Turma: ________</li>
+          <li>Instituição: ________</li>
+          <li>Ano: 2025</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>
+      SafeBite · Projeto acadêmico – Empreendedorismo · Prof. Luciano Araújo · 2025
+    </p>
+  </footer>
+
+  <!-- SCRIPT DO CARROSSEL -->
+  <script>
+    (function () {
+      const mockupImages = [
+        "assets/mockups/tela1.png",
+        "assets/mockups/tela2.png",
+        "assets/mockups/tela3.png",
+        "assets/mockups/tela4.png",
+        "assets/mockups/tela5.png",
+        "assets/mockups/tela6.png"
+      ];
+
+      const mainImg = document.getElementById("carousel-main-img");
+      const peekImg = document.getElementById("carousel-peek-img");
+      const prevBtn = document.querySelector(".carousel-arrow.prev");
+      const nextBtn = document.querySelector(".carousel-arrow.next");
+
+      let currentIndex = 0;
+
+      function updateCarousel() {
+        if (!mainImg || !peekImg) return;
+        mainImg.src = mockupImages[currentIndex];
+        const nextIndex = (currentIndex + 1) % mockupImages.length;
+        peekImg.src = mockupImages[nextIndex];
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener("click", function () {
+          currentIndex = (currentIndex + 1) % mockupImages.length;
+          updateCarousel();
+        });
+      }
+
+      if (prevBtn) {
+        prevBtn.addEventListener("click", function () {
+          currentIndex = (currentIndex - 1 + mockupImages.length) % mockupImages.length;
+          updateCarousel();
+        });
+      }
+
+      updateCarousel();
+    })();
+  </script>
+</body>
+</html>
