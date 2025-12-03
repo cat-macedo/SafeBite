@@ -233,6 +233,13 @@
       align-items: start;
     }
 
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      align-items: center;
+    }
+
     .grid-4 {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -317,7 +324,7 @@
     /* CARROSSEL (tela de celular) */
     .carousel-main {
       position: relative;
-      max-width: 280px;   /* largura de celular, altura mantém proporção */
+      max-width: 450px;   /* largura de celular, altura mantém proporção */
       margin: 0 auto;
     }
 
@@ -755,11 +762,11 @@
 
   <!-- MVP & CARROSSEL -->
   <section id="mvp">
-    <div class="container grid-2">
+    <div class="container grid-3">
       <div>
         <h2 class="section-title">Como funciona o MVP</h2>
         <p>
-          O MVP do SafeBite permite que o usuário cadastre suas restrições,
+          O MVP (Produto Mínimo Viável) do SafeBite permite que o usuário cadastre suas restrições,
           explore restaurantes verificados, visualize cardápios com alertas
           de alergênicos e finalize o pedido com segurança.
         </p>
@@ -834,7 +841,7 @@
         <div class="resource-card">
           <h3>Apresentação de Slides</h3>
           <p>Versão utilizada no pitch final com síntese completa do projeto.</p>
-          <a href="LINK_PARA_SLIDES" target="_blank" rel="noopener" class="btn-secondary">
+          <a href="https://drive.google.com/file/d/1vXZJbiB79Mg8z8ZBEVkBlhmFqyAIRKLv/view?usp=sharing" target="_blank" rel="noopener" class="btn-secondary">
             Abrir Slides
           </a>
         </div>
@@ -842,7 +849,7 @@
         <div class="resource-card">
           <h3>Projeto PIPE</h3>
           <p>Documento completo com análise de mercado, validação, proposta e modelo.</p>
-          <a href="LINK_PARA_PIPE" target="_blank" rel="noopener" class="btn-secondary">
+          <a href="https://drive.google.com/file/d/1vURmf38rxwh3TjuQXv7mBXALykRoDJU3/view?usp=sharing" target="_blank" rel="noopener" class="btn-secondary">
             Abrir PIPE
           </a>
         </div>
@@ -861,44 +868,44 @@
 
       <div class="team-column">
         <div class="team-card">
-          <h3><strong>Nome 1</strong> — Coordenação geral & visão do produto</h3>
+          <h3><strong>Catarina Macedo Scabelli</strong> — 14215555</h3>
           <p class="team-desc">
-            Texto breve sobre a pessoa e a contribuição específica no projeto. (Preencher depois)
+            Atuou na modelagem do negócio (definindo o projeto, segmento de clientes, métricas-chave, planejamento financeiro) e na criação desta página do projeto.
           </p>
         </div>
 
         <div class="team-card">
-          <h3><strong>Nome 2</strong> — Pesquisa de mercado & validação</h3>
+          <h3><strong>Gabriel Gonçalves de Souza Ribeiro</strong> — 14691679</h3>
           <p class="team-desc">
-            Texto breve sobre a pessoa e suas responsabilidades no processo. (Preencher depois)
+            Atuou na modelagem do negócio (definindo o projeto, segmento de clientes, métricas-chave, planejamento financeiro) e na criação desta página do projeto.
           </p>
         </div>
 
         <div class="team-card">
-          <h3><strong>Nome 3</strong> — UX/UI Design & identidade visual</h3>
+          <h3><strong>Geovanny Luan Piedade</strong> — 14573909</h3>
           <p class="team-desc">
-            Texto breve sobre a atuação no design, protótipo e experiência do usuário. (Preencher depois)
+            Atuou na criação das telas do aplicatico SafeBite e suas principais funcionalidades, como login, personalização das preferências do usuário (como suas restrições alimentares), pesquisa por produtos e restaurantes e sistemas de filtragem.
           </p>
         </div>
 
         <div class="team-card">
-          <h3><strong>Nome 4</strong> — Desenvolvimento do MVP</h3>
+          <h3><strong>Julio Hiroshi Ike Junior</strong> — 14585531</h3>
           <p class="team-desc">
-            Texto curto descrevendo o desenvolvimento técnico, estrutura do MVP ou protótipo. (Preencher depois)
+            Atuou na criação da Banco de Dados, da API e na integração entre o front-end e o back-end do SafeBite.
           </p>
         </div>
 
         <div class="team-card">
-          <h3><strong>Nome 5</strong> — Modelo de negócios & métricas</h3>
+          <h3><strong>Kaue Camargo Marinho</strong> — 14677422</h3>
           <p class="team-desc">
-            Breve descrição da contribuição na análise financeira, métricas e viabilidade. (Preencher depois)
+            Atuou na criação da Banco de Dados, da API e na integração entre o front-end e o back-end do SafeBite, bem como na finalização das funcionalidades do aplicativo.
           </p>
         </div>
 
         <div class="team-card">
-          <h3><strong>Nome 6</strong> — Pitch, comunicação & apresentação</h3>
+          <h3><strong>Mariana Soares Perez</strong> — 13734754</h3>
           <p class="team-desc">
-            Pequena biografia sobre a criação do pitch, narração e comunicação final do projeto. (Preencher depois)
+            Atuou na modelagem do negócio (definindo o projeto, segmento de clientes, métricas-chave, planejamento financeiro) e na criação desta página do projeto.
           </p>
         </div>
       </div>
@@ -909,8 +916,8 @@
           Projeto desenvolvido como parte da disciplina de Empreendedorismo, sob orientação do Prof. Luciano Araújo.
         </p>
         <ul class="credits-list">
-          <li>Turma: ________</li>
-          <li>Instituição: ________</li>
+          <li>Turma: 94</li>
+          <li>Instituição: Escola de Artes, Ciências e Humanidades - Universidade de São Paulo (EACH-USP)</li>
           <li>Ano: 2025</li>
         </ul>
       </div>
@@ -927,12 +934,12 @@
   <script>
     (function () {
       const mockupImages = [
-        "assets/mockups/tela1.png",
-        "assets/mockups/tela2.png",
-        "assets/mockups/tela3.png",
-        "assets/mockups/tela4.png",
-        "assets/mockups/tela5.png",
-        "assets/mockups/tela6.png"
+        "assets/mockups/tela 1-2.jpg",
+        "assets/mockups/tela 3-4.jpg",
+        "assets/mockups/tela 5-6.jpg",
+        "assets/mockups/tela 7-8.jpg",
+        // "assets/mockups/tela5.png",
+        // "assets/mockups/tela6.png"
       ];
 
       const mainImg = document.getElementById("carousel-main-img");
